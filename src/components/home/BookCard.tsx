@@ -1,10 +1,10 @@
+"use client"
 import type { BookAvailabilityStatus } from "@/types/book";
 
 interface BookCardProps {
   title: string;
   coverUrl: string;
   status: BookAvailabilityStatus;
-  href?: string;
 }
 
 const BUTTON_CONFIG: Record<
@@ -46,26 +46,12 @@ export default function BookCard({
         <img
           src={coverUrl}
           alt={title}
-          className="
-            aspect-[2/3]
-            w-full
-            object-cover
-            transition-transform
-            duration-300
-            group-hover:scale-105
-          "
+          className="aspect-[2/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
       {/* Action Button */}
-      <div
-        className="
-          mt-3 flex h-[44px] items-center justify-center gap-2
-          rounded-md bg-[#1769b0] text-sm font-medium text-white
-          transition-all duration-200
-          hover:bg-[#0f5c9d]
-        "
-      >
+      <div className="mt-3 flex h-[44px] items-center justify-center gap-2 rounded-md bg-[#1769b0] text-sm font-medium text-white transition-all duration-200 hover:bg-[#0f5c9d]">
         <span>{label}</span>
 
         {showIcon && (

@@ -1,7 +1,5 @@
 "use client";
 
-import { Button } from "../ui/button";
-
 export interface BookType {
   id: string;
   title: string;
@@ -38,52 +36,52 @@ function BookCardComponent(props: BookType) {
       </div>
 
       {/* Action Button */}
-     <div className="mt-3">
-  <a
-    href={props.href ?? "#"}
-    className="
-      flex
-      h-[51px]
-      w-full
-      items-center
-      justify-center
-      gap-2
-      rounded-md
-      bg-[#1769b0]
-      text-sm
-      font-medium
-      text-white
-      transition-all
-      duration-200
-      hover:bg-[#0f5c9d]
-      hover:shadow-md
-      active:scale-[0.98]
-    "
-  >
-    <span>Borrow</span>
+      <div className="mt-3">
+        <a
+          href={props.href ?? "#"}
+          className="
+            flex
+            h-[51px]
+            w-full
+            items-center
+            justify-center
+            gap-2
+            rounded-md
+            bg-[#1769b0]
+            text-sm
+            font-medium
+            text-white
+            transition-all
+            duration-200
+            hover:bg-[#0f5c9d]
+            hover:shadow-md
+            active:scale-[0.98]
+          "
+        >
+          <span>Borrow</span>
 
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="
-        h-4
-        w-4
-        transition-transform
-        duration-200
-        group-hover:translate-x-0.5
-      "
-    >
-      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-      <path d="M15 3h6v6" />
-      <path d="M10 14L21 3" />
-    </svg>
-  </a>
-</div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="
+              h-4
+              w-4
+              transition-transform
+              duration-200
+              group-hover:translate-x-0.5
+            "
+          >
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <path d="M15 3h6v6" />
+            <path d="M10 14L21 3" />
+          </svg>
+        </a>
+      </div>
     </div>
   );
 }
