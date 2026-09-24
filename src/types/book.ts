@@ -5,7 +5,7 @@ export type BookAvailabilityStatus =
   | "unavailable";
 
 export interface Book {
-  id: number;
+  id: string;
   title: string;
   coverUrl: string;
   status: BookAvailabilityStatus;

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import BookCardComponent from "./BookCardComponent";
-import Link from "next/link";
 
 interface BookType {
   id: string;
@@ -10,44 +10,41 @@ interface BookType {
   coverUrl: string;
 }
 
-interface OpenLibraryBook {
-  key?: string;
-  title?: string;
-  cover_i?: number;
+interface BookCardComponentListProps {
+  source?: "library" | "explore";
 }
 
-interface LocalBook extends BookType {
-  author: string;
-}
+const EXPLORE_BOOK_LIMIT = 80;
 
-export default function BookCardComponentList() {
+export default function BookCardComponentList({
+  source = "library",
+}: BookCardComponentListProps) {
   const [bookData, setBookData] = useState<BookType[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     let isCancelled = false;
 
     async function fetchBooks() {
-      const [openLibraryResponse, localResponse] = await Promise.all([
-        fetch("https://openlibrary.org/search.json?q=popular&limit=30"),
-        fetch("/api/books"),
-      ]);
+      try {
+        const endpoint = source === "explore" ? "/api/explore" : "/api/books";
+        const response = await fetch(endpoint);
 
-      const openLibraryData = await openLibraryResponse.json();
-      const localBooks: LocalBook[] = localResponse.ok
-        ? await localResponse.json()
-        : [];
-      const popularBooks: BookType[] = openLibraryData.docs
-        .filter((book: OpenLibraryBook) => book.key && book.title)
-        .map((book: OpenLibraryBook) => ({
-          id: book.key!.replace("/works/", ""),
-          title: book.title!,
-          coverUrl: book.cover_i
-            ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
-            : "/placeholder-book.jpg",
-        }));
+        if (!response.ok) {
+          throw new Error(`Unable to load ${source} books`);
+        }
 
-      if (!isCancelled) {
-        setBookData([...localBooks, ...popularBooks]);
+        const data = (await response.json()) as BookType[];
+
+        if (!isCancelled) {
+          setBookData(
+            source === "explore" ? data.slice(0, EXPLORE_BOOK_LIMIT) : data
+          );
+        }
+      } catch {
+        if (!isCancelled) {
+          setBookData([]);
+        }
       }
     }
 
@@ -62,22 +59,31 @@ export default function BookCardComponentList() {
       isCancelled = true;
       window.removeEventListener("books-updated", handleBooksUpdated);
     };
-  }, []);
+  }, [source]);
 
-return (
-  <div className="flex gap-9 overflow-x-auto px-9 pb-3">
-    {bookData.map((book) => (
-      <Link
-        key={book.id}
-        href={`/books/${book.id}`}
-      >
-        <BookCardComponent
-          id={book.id}
-          title={book.title}
-          coverUrl={book.coverUrl}
-        />
-      </Link>
-    ))}
-  </div>
-);
+  if (bookData.length === 0) {
+    return (
+      <div className="flex min-h-[240px] items-center justify-center rounded-xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-500">
+        No books in the library yet.
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex gap-9 overflow-x-auto px-9 pb-3">
+      {bookData.map((book) => (
+        <div
+          key={book.id}
+          onClick={() => router.push(`/books/${book.id}`)}
+          className="cursor-pointer"
+        >
+          <BookCardComponent
+            id={book.id}
+            title={book.title}
+            coverUrl={book.coverUrl}
+          />
+        </div>
+      ))}
+    </div>
+  );
 }

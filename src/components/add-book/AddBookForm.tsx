@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React, { useState } from 'react'
 import { Card } from '../ui/card'
 import {Input } from '@base-ui/react'
@@ -124,8 +125,7 @@ const AddBookForm = () => {
                 <div>
                     <div className='mt-2 w-32 h-48 bg-muted flex items-center justify-center border border-gray-300 rounded-md overflow-hidden '>
                         {coverPreview ? 
-                        (<img src={coverPreview} alt='cover preview'
-                        className=' w-full h-full object-cover'/>): 
+                        (<Image src={coverPreview} alt='cover preview' width={128} height={192} unoptimized className=' w-full h-full object-cover'/>): 
                         (<div>No cover select:</div>)}
                     </div>
                 </div>

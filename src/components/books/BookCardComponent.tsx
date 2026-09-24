@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "../ui/button";
+import Image from "next/image";
 
 export interface BookType {
   id: string;
@@ -12,53 +12,25 @@ export interface BookType {
 function BookCardComponent(props: BookType) {
   return (
     <div
-      className="
-        group
-        w-[260px]
-        min-w-[260px]
-        overflow-hidden
-        transition-all
-        duration-300
-      "
+      className="group w-64 min-w-64 overflow-hidden transition-all duration-300"
     >
       {/* Book Cover */}
       <div className="overflow-hidden rounded-lg">
-        <img
+        <Image
           src={props.coverUrl || "/placeholder-book.png"}
           alt={props.title}
-          className="
-            aspect-[2/3]
-            w-full
-            object-cover
-            transition-transform
-            duration-300
-            group-hover:scale-105
-          "
+          width={260}
+          height={390}
+          unoptimized
+          className="aspect-[2/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
       {/* Action Button */}
       <div className="mt-3">
-        <a
-          href={props.href ?? "#"}
-          className="
-            flex
-            h-[51px]
-            w-full
-            items-center
-            justify-center
-            gap-2
-            rounded-md
-            bg-[#1769b0]
-            text-sm
-            font-medium
-            text-white
-            transition-all
-            duration-200
-            hover:bg-[#0f5c9d]
-            hover:shadow-md
-            active:scale-[0.98]
-          "
+        <button
+          type="button"
+          className="flex h-[51px] w-full items-center justify-center gap-2 rounded-md bg-[#1769b0] text-sm font-medium text-white transition-all duration-200 hover:bg-[#0f5c9d] hover:shadow-md active:scale-[0.98]"
         >
           <span>Borrow</span>
 
@@ -70,19 +42,13 @@ function BookCardComponent(props: BookType) {
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="
-              h-4
-              w-4
-              transition-transform
-              duration-200
-              group-hover:translate-x-0.5
-            "
+            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
           >
             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
             <path d="M15 3h6v6" />
             <path d="M10 14L21 3" />
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   );

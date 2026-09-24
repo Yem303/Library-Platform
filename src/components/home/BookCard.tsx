@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { BookAvailabilityStatus } from "@/types/book";
 
 interface BookCardProps {
@@ -43,28 +44,19 @@ export default function BookCard({
     <div className="group flex flex-col">
       {/* Book Cover */}
       <div className="overflow-hidden rounded-md bg-gray-100 shadow-sm">
-        <img
+        <Image
           src={coverUrl}
           alt={title}
-          className="
-            aspect-[2/3]
-            w-full
-            object-cover
-            transition-transform
-            duration-300
-            group-hover:scale-105
-          "
+          width={260}
+          height={390}
+          unoptimized
+          className="aspect-[2/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
       {/* Action Button */}
       <div
-        className="
-          mt-3 flex h-[44px] items-center justify-center gap-2
-          rounded-md bg-[#1769b0] text-sm font-medium text-white
-          transition-all duration-200
-          hover:bg-[#0f5c9d]
-        "
+        className="mt-3 flex h-[44px] items-center justify-center gap-2 rounded-md bg-[#1769b0] text-sm font-medium text-white transition-all duration-200 hover:bg-[#0f5c9d]"
       >
         <span>{label}</span>
 

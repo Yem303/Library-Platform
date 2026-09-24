@@ -10,14 +10,80 @@ interface StoredBook {
 	coverUrl: string;
 }
 
+interface OpenLibraryBook {
+	key?: string;
+	title?: string;
+	cover_i?: number;
+	author_name?: string[];
+}
+
 const globalForBooks = globalThis as typeof globalThis & {
 	libraryBooks?: StoredBook[];
 };
 
 const books = globalForBooks.libraryBooks ?? (globalForBooks.libraryBooks = []);
 
+const FEED_CATEGORIES = [
+	"popular",
+	"fiction",
+	"classic",
+	"romance",
+	"mystery",
+	"fantasy",
+];
+
 export async function GET() {
-	return NextResponse.json(books);
+	try {
+		const feedResults = await Promise.all(
+			FEED_CATEGORIES.map(async (category) => {
+				try {
+					const response = await fetch(
+						`https://openlibrary.org/search.json?q=${encodeURIComponent(category)}&limit=8`,
+						{ next: { revalidate: 3600 } }
+					);
+
+					if (!response.ok) {
+						return [] as StoredBook[];
+					}
+
+					const data = (await response.json()) as { docs?: OpenLibraryBook[] };
+					const docs = Array.isArray(data.docs) ? data.docs : [];
+
+					return docs
+						.filter(
+							(book): book is OpenLibraryBook =>
+								Boolean(book) &&
+								typeof book === "object" &&
+								typeof book.key === "string" &&
+								typeof book.title === "string"
+						)
+						.map((book) => ({
+							id: book.key!.replace("/works/", ""),
+							title: book.title!,
+							author: book.author_name?.[0] ?? "Unknown Author",
+							genre: category,
+							description: "Shared from the website feed.",
+							publishedYear: new Date().getFullYear(),
+							coverUrl: book.cover_i
+								? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+								: "/placeholder-book.jpg",
+						}));
+				} catch {
+					return [] as StoredBook[];
+				}
+			})
+		);
+
+		const combined = [...books, ...feedResults.flat()];
+		const uniqueBooks = combined.filter(
+			(book, index, list) =>
+				list.findIndex((item) => item.id === book.id) === index
+		);
+
+		return NextResponse.json(uniqueBooks);
+	} catch {
+		return NextResponse.json(books);
+	}
 }
 
 export async function POST(request: Request) {

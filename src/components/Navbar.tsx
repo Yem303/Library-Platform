@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { usePathname } from 'next/navigation';
@@ -24,9 +25,11 @@ export default function Navbar() {
       href="/"
       className="group flex items-center gap-2"
     >
-      <img
+      <Image
         src="/Logo.png"
         alt="iSTAD Books Logo"
+        width={72}
+        height={72}
         className="h-18 w-18 object-contain -rotate-12 transition-transform duration-300 group-hover:rotate-0"
       />
 
@@ -130,7 +133,7 @@ export default function Navbar() {
         className="hidden rounded-lg p-4 border-gray-300 dark:text-black px-4 font-medium transition-all duration-200 hover:border-gray-400 hover:bg-gray-100 sm:flex"
       
       >
-        <Link href="/login">
+        <Link href="/sign-in">
           Log in
         </Link>
       </Button>
@@ -141,7 +144,7 @@ export default function Navbar() {
         className="rounded-lg p-4 bg-black px-4 font-medium text-white transition-all duration-200 hover:bg-gray-800"
      
       >
-        <Link href="/register">
+        <Link href="/sign-up">
           Sign up
         </Link>
       </Button>

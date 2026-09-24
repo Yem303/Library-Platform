@@ -21,12 +21,7 @@ export default function BookSection({
       <div className="border-b border-gray-200 bg-white px-8 py-3">
         <a
           href="#"
-          className="
-            text-lg
-            text-[#005a9c]
-            underline
-            underline-offset-2
-          "
+          className="text-lg text-[#005a9c] underline underline-offset-2"
         >
           {title}
         </a>

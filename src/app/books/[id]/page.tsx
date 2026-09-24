@@ -7,11 +7,25 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  const response = await fetch(
-    `https://openlibrary.org/works/${id}.json`
-  );
+  let book: {
+    title?: string;
+    description?: string | { value?: string };
+    covers?: number[];
+    first_publish_date?: string;
+    subjects?: string[];
+  } = {};
 
-  const book = await response.json();
+  try {
+    const response = await fetch(`https://openlibrary.org/works/${id}.json`, {
+      next: { revalidate: 3600 },
+    });
+
+    if (response.ok) {
+      book = await response.json();
+    }
+  } catch {
+    book = {};
+  }
 
   const description =
     typeof book.description === "string"
@@ -22,14 +36,18 @@ export default async function Page({
     ? `https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`
     : "/placeholder-book.jpg";
 
+  const safeTitle = book.title ?? "Unknown title";
+  const safePublishedYear = book.first_publish_date ?? "";
+  const safeGenres = book.subjects?.slice(0, 5) ?? [];
+
   return (
     <div>
       <BookCardComponentDetail
-        title={book.title}
+        title={safeTitle}
         coverUrl={coverUrl}
         description={description}
-        publishedYear={book.first_publish_date}
-        genres={book.subjects?.slice(0, 5) || []}
+        publishedYear={safePublishedYear}
+        genres={safeGenres}
       />
     </div>
   );
