@@ -25,6 +25,7 @@ export default async function Page({
   return (
     <div>
       <BookCardComponentDetail
+        id={id}
         title={book.title}
         coverUrl={coverUrl}
         description={description}

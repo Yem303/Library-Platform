@@ -60,6 +60,7 @@ export default function BookCardComponentListDetail({
 
   return (
     <BookCardComponentDetail
+      id={bookData.id}
       title={bookData.title}
       coverUrl={bookData.coverUrl}
       description={bookData.description}
