@@ -15,6 +15,12 @@ export const BOOK_CATEGORIES = [
   "poetry",
   "dystopian",
   "gothic",
+  "biography",
+  "history",
+  "science",
+  "children",
+  "philosophy",
+  "self-help",
 ];
 
 export const BOOK_CATEGORY_LABELS: Record<string, string> = {
@@ -30,6 +36,12 @@ export const BOOK_CATEGORY_LABELS: Record<string, string> = {
   poetry: "Poetry Books",
   dystopian: "Dystopian Books",
   gothic: "Gothic Books",
+  biography: "Biography Books",
+  history: "History Books",
+  science: "Science Books",
+  children: "Children's Books",
+  philosophy: "Philosophy Books",
+  "self-help": "Self-Help Books",
 };
 
 async function safeFetchJson<T>(url: string): Promise<T | null> {
