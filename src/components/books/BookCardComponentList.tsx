@@ -1,5 +1,5 @@
-"use client";
 
+"use client"
 import React, { useEffect, useState } from "react";
 import BookCardComponent from "./BookCardComponent";
 import Link from "next/link";

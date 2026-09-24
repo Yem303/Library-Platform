@@ -1,4 +1,4 @@
-"use client";
+
 
 import React, { useEffect, useState } from "react";
 
@@ -9,13 +9,16 @@ type BookIdType = {
 };
 
 type BookDetailType = {
+  [x: string]: string | undefined;
   id: string;
   title: string;
   coverUrl: string;
   description?: string;
   publishedYear?: string;
-  genres?: string[];
+  author: string;
+
 };
+
 
 export default function BookCardComponentListDetail({
   id,
@@ -47,7 +50,7 @@ export default function BookCardComponentListDetail({
       genres: data.subjects?.slice(0, 5) || [],
     };
 
-    setBookData(book);
+    setBookData(bookData);
   }
 
   useEffect(() => {
@@ -59,12 +62,14 @@ export default function BookCardComponentListDetail({
   }
 
   return (
-    <BookCardComponentDetail
+   <BookCardComponentDetail
       title={bookData.title}
       coverUrl={bookData.coverUrl}
       description={bookData.description}
-      publishedYear={bookData.publishedYear}
-      genres={bookData.genres}
+      publishDate={String(bookData.publishedYear)}
+      publisher={bookData.publisher}
+      language={bookData.language}
+      author={bookData.author ?? "Unknown Author"}
     />
   );
 }

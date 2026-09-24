@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BookSearch() {
+function page() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function BookSearch() {
   )
 }
 
-export default BookSearch
+export default page
