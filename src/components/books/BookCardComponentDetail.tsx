@@ -1,6 +1,8 @@
 import React from "react";
+import BorrowButton from "@/components/books/BorrowButton";
 
 interface BookDetailType {
+  id: string;
   title: string;
   coverUrl: string;
   author?: string;
@@ -90,25 +92,12 @@ function BookCardComponentDetail(props: BookDetailType) {
 
           {/* Buttons */}
           <div className="mt-auto flex flex-wrap gap-3 pt-8">
-            <a
-              href={props.href ?? "#"}
-              className="
-                inline-flex
-                h-12
-                items-center
-                justify-center
-                rounded-md
-                bg-[#1769b0]
-                px-7
-                text-sm
-                font-semibold
-                text-white
-                transition
-                hover:bg-[#0f5c9d]
-              "
-            >
-              Borrow Book
-            </a>
+            <BorrowButton
+              id={props.id}
+              title={props.title}
+              coverUrl={props.coverUrl}
+              author={props.author}
+            />
 
             <button
               type="button"
