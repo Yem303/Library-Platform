@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -30,10 +31,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 w-full border-b border-[#DAD3C8]/70 bg-[#FCFAF7]/80 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
-        {/* ===================================================== */}
         {/* Logo */}
-        {/* ===================================================== */}
-
         <Link
           href="/"
           className="group flex items-center gap-2"
@@ -67,82 +65,79 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* ===================================================== */}
         {/* Desktop Navigation */}
-        {/* ===================================================== */}
-
         <div className="hidden items-center gap-1 md:flex">
 
           {/* Feed */}
-          <Button
-     
-            variant={isActive("/") ? "default" : "ghost"}
-            size="sm"
-            className="rounded-lg p-4"
+          <Link
+            href="/"
+            className={`
+              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
+              transition-colors
+              ${
+                isActive("/")
+                  ? "bg-black text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }
+            `}
           >
-            <Link
-              href="/"
-              className="flex items-center gap-2 px-3 text-sm"
-            >
-              <BookOpen className="h-4 w-4" />
-              <span>Feed</span>
-            </Link>
-          </Button>
+            <BookOpen className="h-4 w-4" />
+            <span>Feed</span>
+          </Link>
 
           {/* Explore */}
-          <Button
-          
-            variant={isActive("/explore") ? "default" : "ghost"}
-            size="sm"
-            className="rounded-lg p-4"
+          <Link
+            href="/explore"
+            className={`
+              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
+              transition-colors
+              ${
+                isActive("/explore")
+                  ? "bg-black text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }
+            `}
           >
-            <Link
-              href="/explore"
-              className="flex items-center gap-2 px-3 text-sm"
-            >
-              <Compass className="h-4 w-4" />
-              <span>Explore</span>
-            </Link>
-          </Button>
+            <Compass className="h-4 w-4" />
+            <span>Explore</span>
+          </Link>
 
           {/* Add Book */}
-          <Button
-      
-            variant={isActive("/add-book") ? "default" : "ghost"}
-            size="sm"
-            className="rounded-lg p-4"
+          <Link
+            href="/add-book"
+            className={`
+              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
+              transition-colors
+              ${
+                isActive("/add-book")
+                  ? "bg-black text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }
+            `}
           >
-            <Link
-              href="/add-book"
-              className="flex items-center gap-2 px-3 text-sm"
-            >
-              <Plus className="h-4 w-4" />
-              <span>Add Book</span>
-            </Link>
-          </Button>
+            <Plus className="h-4 w-4" />
+            <span>Add Book</span>
+          </Link>
 
           {/* Library */}
-          <Button
-      
-            variant={isActive("/library") ? "default" : "ghost"}
-            size="sm"
-            className="rounded-lg p-4"
+          <Link
+            href="/library"
+            className={`
+              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
+              transition-colors
+              ${
+                isActive("/library")
+                  ? "bg-black text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }
+            `}
           >
-            <Link
-              href="/library"
-              className="flex items-center gap-2 px-3 text-sm"
-            >
-              <Library className="h-4 w-4" />
-              <span>Library</span>
-            </Link>
-          </Button>
-
+            <Library className="h-4 w-4" />
+            <span>Library</span>
+          </Link>
         </div>
 
-        {/* ===================================================== */}
         {/* Right Side */}
-        {/* ===================================================== */}
-
         <div className="flex items-center gap-2">
 
           {/* Mobile Menu */}
@@ -154,10 +149,7 @@ export default function Navbar() {
             <Menu className="h-5 w-5" />
           </Button>
 
-          {/* ================================================= */}
-          {/* Clerk - Signed Out */}
-          {/* ================================================= */}
-
+          {/* Signed Out */}
           <Show when="signed-out">
 
             {/* Login */}
@@ -205,16 +197,12 @@ export default function Navbar() {
 
           </Show>
 
-          {/* ================================================= */}
-          {/* Clerk - Signed In */}
-          {/* ================================================= */}
-
+          {/* Signed In */}
           <Show when="signed-in">
             <UserButton />
           </Show>
 
         </div>
-
       </div>
     </nav>
   );

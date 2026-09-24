@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 
 import BookCardComponentDetail from "./BookCardComponentDetail";
@@ -16,9 +14,8 @@ type BookDetailType = {
   description?: string;
   publishedYear?: string;
   author: string;
-
+ // genres?: string[];
 };
-
 
 export default function BookCardComponentListDetail({
   id,
@@ -36,7 +33,7 @@ export default function BookCardComponentListDetail({
 
     const data = await response.json();
 
-    const book = {
+    const book: BookDetailType = {
       id: id,
       title: data.title,
       coverUrl: data.covers?.[0]
@@ -47,10 +44,13 @@ export default function BookCardComponentListDetail({
           ? data.description
           : data.description?.value || "",
       publishedYear: data.first_publish_date,
+      author: data.authors?.[0]?.author?.key
+        ? data.authors[0].author.key
+        : "Unknown Author",
       genres: data.subjects?.slice(0, 5) || [],
     };
 
-    setBookData(bookData);
+    setBookData(book);
   }
 
   useEffect(() => {
@@ -62,12 +62,8 @@ export default function BookCardComponentListDetail({
   }
 
   return (
-<<<<<<< HEAD
-   <BookCardComponentDetail
-=======
     <BookCardComponentDetail
       id={bookData.id}
->>>>>>> a927cbcfb1ee74631bb8808eaa8c2e8d410f8fb7
       title={bookData.title}
       coverUrl={bookData.coverUrl}
       description={bookData.description}
