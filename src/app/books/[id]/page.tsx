@@ -27,6 +27,7 @@ export default async function Page({ params }: Props) {
 
     const book = await response.json();
 
+<<<<<<< HEAD
     // normalize description safely
     const description =
       typeof book?.description === "string"
@@ -64,4 +65,18 @@ export default async function Page({ params }: Props) {
       </div>
     );
   }
+=======
+  return (
+    <div>
+      <BookCardComponentDetail
+        id={id}
+        title={book.title}
+        coverUrl={coverUrl}
+        description={description}
+        publishedYear={book.first_publish_date}
+        genres={book.subjects?.slice(0, 5) || []}
+      />
+    </div>
+  );
+>>>>>>> a927cbcfb1ee74631bb8808eaa8c2e8d410f8fb7
 }

@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 "use client"
 import React, { useRef, useState } from "react";
 
 export interface BookDetailType {
+=======
+import React from "react";
+import BorrowButton from "@/components/books/BorrowButton";
+
+interface BookDetailType {
+  id: string;
+>>>>>>> a927cbcfb1ee74631bb8808eaa8c2e8d410f8fb7
   title: string;
   coverUrl: string;
   author: string;
@@ -244,6 +252,7 @@ export default function BookCardComponentDetail(props: BookDetailType) {
             </div>
           )}
 
+<<<<<<< HEAD
           {/* Stat boxes */}
           <div className="mt-9 grid gap-4 sm:grid-cols-3">
             {[
@@ -257,6 +266,16 @@ export default function BookCardComponentDetail(props: BookDetailType) {
               </div>
             ))}
           </div>
+=======
+          {/* Buttons */}
+          <div className="mt-auto flex flex-wrap gap-3 pt-8">
+            <BorrowButton
+              id={props.id}
+              title={props.title}
+              coverUrl={props.coverUrl}
+              author={props.author}
+            />
+>>>>>>> a927cbcfb1ee74631bb8808eaa8c2e8d410f8fb7
 
           {/* Previews */}
           {props.previewLanguages?.length ? (

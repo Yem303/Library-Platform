@@ -62,7 +62,12 @@ export default function BookCardComponentListDetail({
   }
 
   return (
+<<<<<<< HEAD
    <BookCardComponentDetail
+=======
+    <BookCardComponentDetail
+      id={bookData.id}
+>>>>>>> a927cbcfb1ee74631bb8808eaa8c2e8d410f8fb7
       title={bookData.title}
       coverUrl={bookData.coverUrl}
       description={bookData.description}
