@@ -64,13 +64,13 @@ export default function Navbar() {
 
       {/* Explore */}
       <Button
-        variant={isActive("/explore") ? "default" : "ghost"}
+        variant={isActive("/books") ? "default" : "ghost"}
         size="sm"
         className="rounded-lg p-4"
        
       >
         <Link
-          href="/explore"
+          href="/books"
           className="flex items-center gap-2 px-3 text-sm"
         >
           <Compass className="h-4 w-4" />
