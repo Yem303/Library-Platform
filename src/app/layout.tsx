@@ -24,6 +24,7 @@ const geistMono = Geist_Mono({
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://istad-library.vercel.app"),
   title: {
     template: "%s | iSTAD Library",
     default: "iSTAD Library | Online Book Library",

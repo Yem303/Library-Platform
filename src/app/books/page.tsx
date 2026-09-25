@@ -2,6 +2,7 @@ import BookSection from "@/components/home/BookSection";
 import { BOOK_CATEGORIES, BOOK_CATEGORY_LABELS, getBooks } from "@/lib/book";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
+  metadataBase: new URL("https://istad-library.vercel.app"),
   title: "Books",
   description:
     "Browse and discover books from the iSTAD Library collection. Explore books from different categories and authors.",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Books | iSTAD Library",
     description: "Browse and discover books from the iSTAD Library collection.",
-    images: ["/thumdnail.png"],
+    images: ["thumdnail.png"],
   },
 };
 export default async function BooksPage() {
