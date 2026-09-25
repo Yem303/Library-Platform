@@ -1,6 +1,23 @@
-<<<<<<< HEAD
 import LibraryList from "@/components/Library/LibraryList";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "My Library",
+  description:
+    "Manage your personal library with iSTAD Library. View and organize your favorite and borrowed books.",
+  keywords: [
+    "my library",
+    "iSTAD Library",
+    "favorite books",
+    "borrowed books",
+    "book collection",
+    "online library",
+  ],
+  openGraph: {
+    title: "My Library | iSTAD Library",
+    description: "Manage your favorite and borrowed books with iSTAD Library.",
+    images: ["/thumdnail.png"],
+  },
+};
 export default function Page() {
   return (
     <div className="mx-auto w-[80%] p-10">
@@ -8,22 +25,3 @@ export default function Page() {
     </div>
   );
 }
-=======
-import BookCardComponentList from "@/components/books/BookCardComponentList";
-
-export default function LibraryPage() {
-  return (
-    <main className="mx-auto w-[80%] overflow-hidden p-10">
-      <h1 className="mb-8 text-4xl font-bold">Library</h1>
-      <section className="mb-12">
-        <h2 className="mb-5 text-2xl font-semibold">Favorites</h2>
-        <BookCardComponentList collection="favorites" />
-      </section>
-      <section>
-        <h2 className="mb-5 text-2xl font-semibold">Borrowed Books</h2>
-        <BookCardComponentList collection="borrowed" />
-      </section>
-    </main>
-  );
-}
->>>>>>> origin/piseth

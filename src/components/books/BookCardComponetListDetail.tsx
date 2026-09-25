@@ -1,32 +1,19 @@
+
 import React, { useEffect, useState } from "react";
 
-import BookCardComponentDetail from "./BookCardComponentDetail";
+import BookCardComponentDetail, { BookDetailType } from "./BookCardComponentDetail";
+
+
 
 type BookIdType = {
   id: string;
 };
 
-type BookDetailType = {
-  [x: string]: string | undefined;
-  id: string;
-  title: string;
-  coverUrl: string;
-  description?: string;
-  publishedYear?: string;
-<<<<<<< HEAD
-  author: string;
- // genres?: string[];
-=======
-  genres?: string[];
-  isFavorite?: boolean;
-  isBorrowed?: boolean;
->>>>>>> origin/piseth
-};
-
 export default function BookCardComponentListDetail({
   id,
 }: BookIdType) {
-  const [bookData, setBookData] = useState<BookDetailType | null>(null);
+  const [bookData, setBookData] =
+    useState<BookDetailType | null>(null);
 
   useEffect(() => {
     let ignore = false;
@@ -44,16 +31,32 @@ export default function BookCardComponentListDetail({
 
       const book: BookDetailType = {
         id,
-        title: data.title,
+        title: data.title ?? "Unknown Title",
+
         coverUrl: data.covers?.[0]
           ? `https://covers.openlibrary.org/b/id/${data.covers[0]}-L.jpg`
           : "/placeholder-book.jpg",
+
         description:
           typeof data.description === "string"
             ? data.description
-            : data.description?.value || "",
-        publishedYear: data.first_publish_date,
-        genres: data.subjects?.slice(0, 5) || [],
+            : data.description?.value ?? "",
+
+        publishedYear: data.first_publish_date ?? "",
+
+        author:
+          data.authors?.[0]?.author?.key?.split("/").pop() ??
+          "Unknown Author",
+
+        genres: data.subjects?.slice(0, 5) ?? [],
+
+        publisher: data.publishers?.[0]?.name ?? "",
+
+        language:
+          data.languages?.[0]?.key?.split("/").pop() ?? "",
+
+        isFavorite: false,
+        isBorrowed: false,
       };
 
       if (!ignore) {
@@ -61,32 +64,16 @@ export default function BookCardComponentListDetail({
       }
     }
 
-    fetchBookData().catch(() => {
+    fetchBookData().catch((error) => {
+      console.error("Failed to fetch book:", error);
+
       if (!ignore) {
         setBookData(null);
       }
     });
 
-<<<<<<< HEAD
-    const book: BookDetailType = {
-      id: id,
-      title: data.title,
-      coverUrl: data.covers?.[0]
-        ? `https://covers.openlibrary.org/b/id/${data.covers[0]}-L.jpg`
-        : "/placeholder-book.jpg",
-      description:
-        typeof data.description === "string"
-          ? data.description
-          : data.description?.value || "",
-      publishedYear: data.first_publish_date,
-      author: data.authors?.[0]?.author?.key
-        ? data.authors[0].author.key
-        : "Unknown Author",
-      genres: data.subjects?.slice(0, 5) || [],
-=======
     return () => {
       ignore = true;
->>>>>>> origin/piseth
     };
   }, [id]);
 
@@ -100,17 +87,13 @@ export default function BookCardComponentListDetail({
       title={bookData.title}
       coverUrl={bookData.coverUrl}
       description={bookData.description}
-<<<<<<< HEAD
-      publishDate={String(bookData.publishedYear)}
-      publisher={bookData.publisher}
-      language={bookData.language}
-      author={bookData.author ?? "Unknown Author"}
-=======
       publishedYear={bookData.publishedYear}
       genres={bookData.genres}
       isFavorite={bookData.isFavorite}
       isBorrowed={bookData.isBorrowed}
->>>>>>> origin/piseth
+      author={bookData.author}
+      publisher={bookData.publisher}
+      language={bookData.language}
     />
   );
 }

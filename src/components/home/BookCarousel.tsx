@@ -1,8 +1,12 @@
+
 "use client";
 
 import { useRef } from "react";
+
 import BookCard from "./BookCard";
+
 import type { Book } from "@/types/book";
+
 import Link from "next/link";
 
 interface BookCarouselProps {
@@ -70,7 +74,6 @@ export default function BookCarousel({ books }: BookCarouselProps) {
       <div
         ref={sliderRef}
         onWheel={handleWheel}
-<<<<<<< HEAD
         className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1 py-2 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300"
       >
         {books.map((book) => (
@@ -86,24 +89,6 @@ export default function BookCarousel({ books }: BookCarouselProps) {
             />
           </Link>
         ))}
-=======
-        className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1 py-2"
-      >
-       {books.map((book) => (
-        <Link
-          key={book.id}
-          href={`/books/${book.id}`}
-          className="min-w-[calc(50%-16px)] snap-start sm:min-w-[calc(33.333%-22px)] lg:min-w-[calc(25%-24px)] xl:min-w-[calc(16.666%-27px)]"
-        >
-          <BookCard
-            title={book.title}
-            coverUrl={book.coverUrl}
-            status={book.status}
-            href={book.href}
-          />
-        </Link>
-      ))}
->>>>>>> origin/piseth
       </div>
 
       {/* Next Button */}
@@ -111,7 +96,7 @@ export default function BookCarousel({ books }: BookCarouselProps) {
         type="button"
         onClick={scrollRight}
         aria-label="Next books"
-        className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#3b9aca] text-white shadow-md transition hover:bg-[#2785b5] active:scale-95"
+        className="absolute right-2 top-1/2 z-10 flex h-10 w-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#3b9aca] text-white shadow-md transition hover:bg-[#2785b5] active:scale-95"
       >
         <svg
           viewBox="0 0 24 24"

@@ -37,9 +37,9 @@ export default function Navbar() {
           className="group flex items-center gap-2"
         >
           <img
-            src="/Logo.png"
+            src="istad-books-logo.png"
             alt="iSTAD Books Logo"
-            className="h-18 w-18 object-contain -rotate-12 transition-transform duration-300 group-hover:rotate-0"
+            className="h-26 w-26 object-contain"
           />
 
           <div className="whitespace-nowrap text-xl font-semibold tracking-tight">
@@ -63,7 +63,7 @@ export default function Navbar() {
             href="/"
             className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
               isActive("/")
-                ? "bg-black text-white"
+                ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
             }`}
           >
@@ -76,7 +76,7 @@ export default function Navbar() {
             href="/explore"
             className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
               isActive("/explore")
-                ? "bg-black text-white"
+                ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
             }`}
           >
@@ -89,7 +89,7 @@ export default function Navbar() {
             href="/add-book"
             className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
               isActive("/add-book")
-                ? "bg-black text-white"
+                ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
             }`}
           >
@@ -102,7 +102,7 @@ export default function Navbar() {
             href="/library"
             className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
               isActive("/library")
-                ? "bg-black text-white"
+                ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
             }`}
           >
@@ -138,7 +138,7 @@ export default function Navbar() {
             <SignUpButton mode="modal">
               <Button
                 size="sm"
-                className="rounded-lg bg-black px-4 font-medium text-white transition-all duration-200 hover:bg-gray-800"
+                className="rounded-lg bg-orange-700 px-4 font-medium text-white transition-all duration-200 hover:bg-gray-800"
               >
                 Sign up
               </Button>

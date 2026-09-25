@@ -14,6 +14,36 @@ type OpenLibraryResponse = {
 
 const BOOK_FETCH_LIMIT = 30;
 
+export const BOOK_CATEGORIES = [
+  "programming",
+  "classic",
+  "romance",
+  "fiction",
+  "history",
+  "science",
+  "fantasy",
+  "mystery",
+  "biography",
+  "business",
+  "self-help",
+] as const;
+
+export type BookCategory = (typeof BOOK_CATEGORIES)[number];
+
+export const BOOK_CATEGORY_LABELS: Record<BookCategory, string> = {
+  programming: "Programming Books",
+  classic: "Classic Books",
+  romance: "Romance Books",
+  fiction: "Fiction Books",
+  history: "History Books",
+  science: "Science Books",
+  fantasy: "Fantasy Books",
+  mystery: "Mystery Books",
+  biography: "Biography Books",
+  business: "Business Books",
+  "self-help": "Self-Help Books",
+};
+
 export async function getBooks(query: string): Promise<Book[]> {
   const data =
     (await safeFetchJson<OpenLibraryResponse>(
@@ -26,12 +56,12 @@ export async function getBooks(query: string): Promise<Book[]> {
     ? data.docs
     : [];
 
-  const status = [
+  const status: Book["status"][] = [
     "available",
     "borrow_available",
     "preview",
     "unavailable",
-  ] as const;
+  ];
 
   return docs.map((book, index) => ({
     id: book.key?.replace("/works/", "") ?? "",
