@@ -1,8 +1,24 @@
-'use client'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { usePathname } from 'next/navigation';
-import { BookOpen, Compass, Library, Menu, Plus } from 'lucide-react';
+
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  BookOpen,
+  Compass,
+  Library,
+  Menu,
+  Plus,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
+import {
+  Show,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -15,26 +31,24 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 w-full border-b border-[#DAD3C8]/70 bg-[#FCFAF7]/80 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
-    {/* Logo */}
-    <Link
-      href="/"
-      className="group flex items-center gap-2"
-    >
-      <img
-        src="/Logo.png"
-        alt="iSTAD Books Logo"
-        className="h-18 w-18 object-contain -rotate-12 transition-transform duration-300 group-hover:rotate-0"
-      />
+        {/* Logo */}
+        <Link
+          href="/"
+          className="group flex items-center gap-2"
+        >
+          <img
+            src="/Logo.png"
+            alt="iSTAD Books Logo"
+            className="h-18 w-18 object-contain -rotate-12 transition-transform duration-300 group-hover:rotate-0"
+          />
 
           <div className="whitespace-nowrap text-xl font-semibold tracking-tight">
             <span className="text-2xl font-extrabold text-red-600">
               i
             </span>
-
             <span className="text-2xl font-extrabold text-blue-600">
               STAD
             </span>
-
             <span className="text-2xl font-medium text-gray-800">
               -books
             </span>
@@ -57,21 +71,18 @@ export default function Navbar() {
             <span>Feed</span>
           </Link>
 
-      {/* Explore */}
-      <Button
-        variant={isActive("/explore") ? "default" : "ghost"}
-        size="sm"
-        className="rounded-lg p-4"
-       
-      >
-        <Link
-          href="/explore"
-          className="flex items-center gap-2 px-3 text-sm"
-        >
-          <Compass className="h-4 w-4" />
-          <span>Explore</span>
-        </Link>
-      </Button>
+          {/* Explore */}
+          <Link
+            href="/explore"
+            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+              isActive("/explore")
+                ? "bg-black text-white"
+                : "text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            <Compass className="h-4 w-4" />
+            <span>Explore</span>
+          </Link>
 
           {/* Add Book */}
           <Link
@@ -114,33 +125,33 @@ export default function Navbar() {
 
           {/* Signed Out */}
           <Show when="signed-out">
+            <SignInButton mode="modal">
+              <Button
+                variant="outline"
+                size="sm"
+                className="hidden rounded-lg border-gray-300 px-4 font-medium transition-all duration-200 hover:border-gray-400 hover:bg-gray-100 sm:flex"
+              >
+                Log in
+              </Button>
+            </SignInButton>
 
-      {/* Login */}
-      <Button
-        variant="outline"
-        size="sm" 
-        className="hidden rounded-lg p-4 border-gray-300 dark:text-black px-4 font-medium transition-all duration-200 hover:border-gray-400 hover:bg-gray-100 sm:flex"
-      
-      >
-        <Link href="/login">
-          Log in
-        </Link>
-      </Button>
+            <SignUpButton mode="modal">
+              <Button
+                size="sm"
+                className="rounded-lg bg-black px-4 font-medium text-white transition-all duration-200 hover:bg-gray-800"
+              >
+                Sign up
+              </Button>
+            </SignUpButton>
+          </Show>
 
-      {/* Sign Up */}
-      <Button
-        size="sm"
-        className="rounded-lg p-4 bg-black px-4 font-medium text-white transition-all duration-200 hover:bg-gray-800"
-     
-      >
-        <Link href="/register">
-          Sign up
-        </Link>
-      </Button>
-    </div>
+          {/* Signed In */}
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
 
-  </div>
-</nav>
-
-  )
+        </div>
+      </div>
+    </nav>
+  );
 }

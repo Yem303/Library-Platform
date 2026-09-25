@@ -20,7 +20,7 @@ const GENRE_CHIPS = [
 ];
 
 export default async function Home() {
-<<<<<<< HEAD
+
   const [
     trendingBooks,
     programmingBooks,
@@ -48,14 +48,13 @@ export default async function Home() {
     getBooks("business"),
     getBooks("self-help"),
   ]);
-=======
   const booksByCategory = await Promise.all(
-    BOOK_CATEGORIES.map(async (category) => ({
+    BOOK_CATEGORIES.map(async (category: string) => ({
       title: BOOK_CATEGORY_LABELS[category],
       books: await getBooks(category),
     }))
   );
->>>>>>> origin/piseth
+
 
   return (
     <>
