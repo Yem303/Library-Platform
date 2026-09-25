@@ -34,20 +34,12 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="group flex items-center gap-2"
+          className="group flex items-center "
         >
           <img
-            src="/Logo.png"
+            src="/istad-books-logo.png"
             alt="iSTAD Books Logo"
-            className="
-              h-18
-              w-18
-              object-contain
-              -rotate-12
-              transition-transform
-              duration-300
-              group-hover:rotate-0
-            "
+            className="h-26 w-26 "
           />
 
           <div className="whitespace-nowrap text-xl font-semibold tracking-tight">
@@ -71,15 +63,11 @@ export default function Navbar() {
           {/* Feed */}
           <Link
             href="/"
-            className={`
-              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
-              transition-colors
-              ${
-                isActive("/")
-                  ? "bg-black text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }
-            `}
+            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+              isActive("/")
+                ? "bg-black text-white"
+                : "text-gray-700 hover:bg-gray-100"
+            }`}
           >
             <BookOpen className="h-4 w-4" />
             <span>Feed</span>
@@ -88,15 +76,11 @@ export default function Navbar() {
           {/* Explore */}
           <Link
             href="/explore"
-            className={`
-              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
-              transition-colors
-              ${
-                isActive("/explore")
-                  ? "bg-black text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }
-            `}
+            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+              isActive("/explore")
+                ? "bg-black text-white"
+                : "text-gray-700 hover:bg-gray-100"
+            }`}
           >
             <Compass className="h-4 w-4" />
             <span>Explore</span>
@@ -105,15 +89,11 @@ export default function Navbar() {
           {/* Add Book */}
           <Link
             href="/add-book"
-            className={`
-              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
-              transition-colors
-              ${
-                isActive("/add-book")
-                  ? "bg-black text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }
-            `}
+            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+              isActive("/add-book")
+                ? "bg-black text-white"
+                : "text-gray-700 hover:bg-gray-100"
+            }`}
           >
             <Plus className="h-4 w-4" />
             <span>Add Book</span>
@@ -122,15 +102,11 @@ export default function Navbar() {
           {/* Library */}
           <Link
             href="/library"
-            className={`
-              flex items-center gap-2 rounded-lg px-4 py-3 text-sm
-              transition-colors
-              ${
-                isActive("/library")
-                  ? "bg-black text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }
-            `}
+            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+              isActive("/library")
+                ? "bg-black text-white"
+                : "text-gray-700 hover:bg-gray-100"
+            }`}
           >
             <Library className="h-4 w-4" />
             <span>Library</span>
@@ -157,19 +133,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 size="sm"
-                className="
-                  hidden
-                  rounded-lg
-                  border-gray-300
-                  px-4
-                  py-2
-                  font-medium
-                  transition-all
-                  duration-200
-                  hover:border-gray-400
-                  hover:bg-gray-100
-                  sm:flex
-                "
+                className="hidden rounded-lg border-gray-300 px-4 py-2 font-medium transition-all duration-200 hover:border-gray-400 hover:bg-gray-100 sm:flex"
               >
                 Log in
               </Button>
@@ -179,17 +143,7 @@ export default function Navbar() {
             <SignUpButton>
               <Button
                 size="sm"
-                className="
-                  rounded-lg
-                  bg-black
-                  px-4
-                  py-2
-                  font-medium
-                  text-white
-                  transition-all
-                  duration-200
-                  hover:bg-gray-800
-                "
+                className="rounded-lg bg-black px-4 py-2 font-medium text-white transition-all duration-200 hover:bg-gray-800"
               >
                 Sign up
               </Button>

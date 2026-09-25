@@ -12,7 +12,8 @@ export default function Footer() {
               href="/"
               className="text-2xl font-bold"
             >
-              📚 Library
+            
+              <span>Library</span>
             </Link>
 
             <p className="mt-4 max-w-sm text-sm leading-6 text-gray-400">

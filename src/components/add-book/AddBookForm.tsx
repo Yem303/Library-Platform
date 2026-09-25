@@ -5,6 +5,7 @@ import {Input } from '@base-ui/react'
 import { Button } from '../ui/button';
 import { Textarea } from '../ui/textarea';
 import { BookPlus } from 'lucide-react';
+
 const porpularGenres =[
     "Classics",
     "Fiction",
@@ -131,7 +132,7 @@ const AddBookForm = () => {
                 </div>
                 {/* Button add book to library */}
                 <div className='p-2'>
-                    <Button type='submit' size={"lg"} className={"w-full p-4"}>
+                    <Button type='submit' size={"lg"} className={"w-full p-4"} >
                         <BookPlus className=' w-5 h-5 mr-2'/> Add to library
                     </Button>
                 </div>
