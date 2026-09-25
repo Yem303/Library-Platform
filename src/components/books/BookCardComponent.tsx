@@ -1,10 +1,7 @@
 "use client";
 
-<<<<<<< HEAD
-=======
 import Image from "next/image";
 
->>>>>>> origin/piseth
 export interface BookType {
   id: string;
   title: string;
