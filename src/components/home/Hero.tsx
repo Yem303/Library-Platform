@@ -14,7 +14,7 @@ const Hero = () => {
                 <p className=' mt-5 text-gray-500 text-[19px]'>Discover a world of knowledge and imagination at your    fingertips. Explore our extensive collection of books, from timeless classics to contemporary bestsellers.
                 </p>
                
-                <Button  className="mt-4 flex items-center gap-2 md:w-1/4 w-auto mx-auto rounded-lg p-5 bg-[#F4EDE3] text-[#847062] hover:bg-[#F4EDE3]/80 transition-transform duration-300 hover:-translate-y-2 border-2 hover:border-yellow-100 ">
+                <Button  className="mt-4 flex items-center gap-2 md:w-1/4 w-auto mx-auto rounded-lg p-5 bg-orange-600 text-white hover:bg-orange-500/90 transition-transform duration-300 hover:-translate-y-2 border-2 hover:border-yellow-100 ">
                     <Link href="/books" className="flex items-center gap-2 py-4">
                         Explore all books
                         <ArrowRight className="h-4 w-4" />

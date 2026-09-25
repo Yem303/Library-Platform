@@ -3,12 +3,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+
 import {
   BookOpen,
   Compass,
   Library,
   Menu,
   Plus,
+  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -22,9 +25,14 @@ import {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function isActive(path: string) {
     return pathname === path;
+  }
+
+  function closeMenu() {
+    setIsMenuOpen(false);
   }
 
   return (
@@ -35,9 +43,10 @@ export default function Navbar() {
         <Link
           href="/"
           className="group flex items-center gap-2"
+          onClick={closeMenu}
         >
           <img
-            src="istad-books-logo.png"
+            src="/istad-books-logo.png"
             alt="iSTAD Books Logo"
             className="h-26 w-26 object-contain"
           />
@@ -46,9 +55,11 @@ export default function Navbar() {
             <span className="text-2xl font-extrabold text-red-600">
               i
             </span>
+
             <span className="text-2xl font-extrabold text-blue-600">
               STAD
             </span>
+
             <span className="text-2xl font-medium text-gray-800">
               -books
             </span>
@@ -114,13 +125,20 @@ export default function Navbar() {
         {/* Right Side */}
         <div className="flex items-center gap-2">
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
             className="rounded-lg md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
           >
-            <Menu className="h-5 w-5" />
+            {isMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </Button>
 
           {/* Signed Out */}
@@ -149,9 +167,73 @@ export default function Navbar() {
           <Show when="signed-in">
             <UserButton />
           </Show>
-
         </div>
       </div>
+
+      {/* Mobile Dropdown Menu */}
+      {isMenuOpen && (
+        <div className="border-t border-[#DAD3C8]/70 bg-[#FCFAF7] shadow-md md:hidden">
+          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+
+            {/* Feed */}
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className={`mb-1 flex items-center gap-3 rounded-lg px-4 py-3 text-sm transition-colors ${
+                isActive("/")
+                  ? "bg-orange-700 text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <BookOpen className="h-5 w-5" />
+              <span>Feed</span>
+            </Link>
+
+            {/* Explore */}
+            <Link
+              href="/explore"
+              onClick={closeMenu}
+              className={`mb-1 flex items-center gap-3 rounded-lg px-4 py-3 text-sm transition-colors ${
+                isActive("/explore")
+                  ? "bg-orange-700 text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <Compass className="h-5 w-5" />
+              <span>Explore</span>
+            </Link>
+
+            {/* Add Book */}
+            <Link
+              href="/add-book"
+              onClick={closeMenu}
+              className={`mb-1 flex items-center gap-3 rounded-lg px-4 py-3 text-sm transition-colors ${
+                isActive("/add-book")
+                  ? "bg-orange-700 text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <Plus className="h-5 w-5" />
+              <span>Add Book</span>
+            </Link>
+
+            {/* Library */}
+            <Link
+              href="/library"
+              onClick={closeMenu}
+              className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm transition-colors ${
+                isActive("/library")
+                  ? "bg-orange-700 text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <Library className="h-5 w-5" />
+              <span>Library</span>
+            </Link>
+
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
