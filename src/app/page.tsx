@@ -1,8 +1,26 @@
 import Hero from "@/components/home/Hero";
 import BookSection from "@/components/home/BookSection";
-import { getBooks } from "@/lib/book";
+import {
+  BOOK_CATEGORIES,
+  BOOK_CATEGORY_LABELS,
+  getBooks,
+} from "@/lib/book";
+
+const GENRE_CHIPS = [
+  "Classics",
+  "Fiction",
+  "Romance",
+  "Drama",
+  "Gothic",
+  "Dystopian",
+  "Adventure",
+  "Poetry",
+  "Mystery",
+  "Fantasy",
+];
 
 export default async function Home() {
+<<<<<<< HEAD
   const [
     trendingBooks,
     programmingBooks,
@@ -30,11 +48,20 @@ export default async function Home() {
     getBooks("business"),
     getBooks("self-help"),
   ]);
+=======
+  const booksByCategory = await Promise.all(
+    BOOK_CATEGORIES.map(async (category) => ({
+      title: BOOK_CATEGORY_LABELS[category],
+      books: await getBooks(category),
+    }))
+  );
+>>>>>>> origin/piseth
 
   return (
     <>
       <Hero />
 
+<<<<<<< HEAD
       <BookSection
         title="Trending Books"
         books={trendingBooks}
@@ -94,6 +121,11 @@ export default async function Home() {
         title="Self-Help Books"
         books={selfHelpBooks}
       />
+=======
+      {booksByCategory.map(({ title, books }) => (
+        <BookSection key={title} title={title} books={books} />
+      ))}
+>>>>>>> origin/piseth
     </>
   );
 }

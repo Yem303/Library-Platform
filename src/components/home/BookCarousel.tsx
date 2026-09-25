@@ -70,6 +70,7 @@ export default function BookCarousel({ books }: BookCarouselProps) {
       <div
         ref={sliderRef}
         onWheel={handleWheel}
+<<<<<<< HEAD
         className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1 py-2 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300"
       >
         {books.map((book) => (
@@ -85,6 +86,24 @@ export default function BookCarousel({ books }: BookCarouselProps) {
             />
           </Link>
         ))}
+=======
+        className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1 py-2"
+      >
+       {books.map((book) => (
+        <Link
+          key={book.id}
+          href={`/books/${book.id}`}
+          className="min-w-[calc(50%-16px)] snap-start sm:min-w-[calc(33.333%-22px)] lg:min-w-[calc(25%-24px)] xl:min-w-[calc(16.666%-27px)]"
+        >
+          <BookCard
+            title={book.title}
+            coverUrl={book.coverUrl}
+            status={book.status}
+            href={book.href}
+          />
+        </Link>
+      ))}
+>>>>>>> origin/piseth
       </div>
 
       {/* Next Button */}
