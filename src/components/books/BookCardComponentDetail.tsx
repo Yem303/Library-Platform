@@ -1,17 +1,71 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 interface BookDetailType {
+  id: string;
   title: string;
   coverUrl: string;
   author?: string;
   description?: string;
   publishedYear?: string | number;
   genres?: string[];
+  isFavorite?: boolean;
+  isBorrowed?: boolean;
   href?: string;
 }
 
 function BookCardComponentDetail(props: BookDetailType) {
+  const [isSaving, setIsSaving] = useState(false);
+  const [isSaved, setIsSaved] = useState(props.isFavorite ?? false);
+  const [isBorrowed, setIsBorrowed] = useState(props.isBorrowed ?? false);
+  const [saveError, setSaveError] = useState("");
+
+  async function handleSaveBook(action: "favorite" | "borrow") {
+    setIsSaving(true);
+    setSaveError("");
+
+    try {
+      const response = await fetch("/api/books", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: props.id,
+          action,
+          title: props.title,
+          author: props.author || "Unknown Author",
+          genre: props.genres?.[0] || "General",
+          description: props.description || "No description available.",
+          publishedYear:
+            typeof props.publishedYear === "number"
+              ? props.publishedYear
+              : Number.parseInt(String(props.publishedYear || ""), 10) ||
+                new Date().getFullYear(),
+          coverUrl: props.coverUrl,
+        }),
+      });
+
+      if (!response.ok) {
+        const result = (await response.json()) as { error?: string };
+        throw new Error(result.error || "Could not add the book.");
+      }
+
+      if (action === "favorite") {
+        setIsSaved(true);
+      } else {
+        setIsBorrowed(true);
+      }
+      window.dispatchEvent(new Event("books-updated"));
+    } catch (error) {
+      setSaveError(
+        error instanceof Error ? error.message : "Could not add the book."
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
   return (
     <div className="mx-auto w-full max-w-6xl rounded-2xl bg-white p-6 shadow-md md:p-10">
       <div className="grid gap-10 md:grid-cols-[280px_1fr]">
@@ -83,19 +137,29 @@ function BookCardComponentDetail(props: BookDetailType) {
           {/* Buttons */}
           <div className="mt-auto flex flex-wrap gap-3 pt-8">
             <a
-              href={props.href ?? "#"}
+              href={props.href}
+              onClick={(event) => {
+                if (!props.href) {
+                  event.preventDefault();
+                  void handleSaveBook("borrow");
+                }
+              }}
+              aria-disabled={isSaving || isBorrowed}
               className="inline-flex h-12 items-center justify-center rounded-md bg-[#1769b0] px-7 text-sm font-semibold text-white transition hover:bg-[#0f5c9d]"
             >
-              Borrow Book
+              {isSaving ? "Saving..." : isBorrowed ? "Borrowed" : "Borrow Book"}
             </a>
 
             <button
               type="button"
+              onClick={() => void handleSaveBook("favorite")}
+              disabled={isSaving || isSaved}
               className="h-12 rounded-md border border-gray-300 px-7 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
             >
-              Add to Favorites
+              {isSaving ? "Saving..." : isSaved ? "Added to Favorites" : "Add to Favorites"}
             </button>
           </div>
+          {saveError && <p className="pt-3 text-sm text-red-600">{saveError}</p>}
         </div>
       </div>
     </div>

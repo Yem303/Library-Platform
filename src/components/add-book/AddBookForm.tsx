@@ -67,6 +67,8 @@ const AddBookForm = () => {
                     description: formData.get("description"),
                     publishedYear: Number(formData.get("publishedYear")),
                     coverUrl,
+                    isFavorite: false,
+                    isBorrowed: false,
                 }),
             });
 

@@ -15,6 +15,8 @@ type BookDetailType = {
   description?: string;
   publishedYear?: string;
   genres?: string[];
+  isFavorite?: boolean;
+  isBorrowed?: boolean;
 };
 
 export default function BookCardComponentListDetail({
@@ -72,11 +74,14 @@ export default function BookCardComponentListDetail({
 
   return (
     <BookCardComponentDetail
+      id={bookData.id}
       title={bookData.title}
       coverUrl={bookData.coverUrl}
       description={bookData.description}
       publishedYear={bookData.publishedYear}
       genres={bookData.genres}
+      isFavorite={bookData.isFavorite}
+      isBorrowed={bookData.isBorrowed}
     />
   );
 }
