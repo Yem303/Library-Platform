@@ -10,7 +10,7 @@ const Hero = () => {
     <section className="border-b h- border-[#DAD3C8]">
         <div className=" container mx-auto px-4 py-12">
             <div className=" max-w-3xl mx-auto flex flex-col justify-center text-center space-x-4 ">
-                <h1 className=' text-7xl md:text-6xl font-bold text-foreground leading-20 tracking-wider'>Wellcome to The Reading Room</h1>
+                <h1 className='text-5xl md:text-6xl font-bold text-foreground leading-20 tracking-wider'>Wellcome to The Reading Room</h1>
                 <p className=' mt-5 text-gray-500 text-[19px]'>Discover a world of knowledge and imagination at your    fingertips. Explore our extensive collection of books, from timeless classics to contemporary bestsellers.
                 </p>
                

@@ -51,7 +51,7 @@ export default function Navbar() {
             className="h-26 w-26 object-contain"
           />
 
-          <div className="whitespace-nowrap text-xl font-semibold tracking-tight">
+          <div className="whitespace-nowrap text-xl font-semibold tracking-tight md:block hidden">
             <span className="text-2xl font-extrabold text-red-600">
               i
             </span>
@@ -72,7 +72,7 @@ export default function Navbar() {
           {/* Feed */}
           <Link
             href="/"
-            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+            className={`flex items-center gap-2 rounded-sm text-sm px-3 py-1 transition-colors ${
               isActive("/")
                 ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
@@ -85,7 +85,7 @@ export default function Navbar() {
           {/* Explore */}
           <Link
             href="/explore"
-            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+            className={`flex items-center gap-2 rounded-sm px-3 py-1 text-sm transition-colors ${
               isActive("/explore")
                 ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
@@ -98,7 +98,7 @@ export default function Navbar() {
           {/* Add Book */}
           <Link
             href="/add-book"
-            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+            className={`flex items-center gap-2 rounded-sm text-sm px-3 py-1 transition-colors ${
               isActive("/add-book")
                 ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
@@ -111,7 +111,7 @@ export default function Navbar() {
           {/* Library */}
           <Link
             href="/library"
-            className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm transition-colors ${
+            className={`flex items-center gap-2 rounded-sm text-sm px-3 py-1 transition-colors ${
               isActive("/library")
                 ? "bg-orange-700 text-white"
                 : "text-gray-700 hover:bg-gray-100"
@@ -129,15 +129,15 @@ export default function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-lg md:hidden"
+            className="rounded-sm md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
-              <X className="h-5 w-5" />
+              <X className="h-6 w-6" />
             ) : (
-              <Menu className="h-5 w-5" />
+              <Menu className="h-6 w-6" />
             )}
           </Button>
 
@@ -147,7 +147,7 @@ export default function Navbar() {
               <Button
                 variant="outline"
                 size="sm"
-                className="hidden rounded-lg border-gray-300 px-4 font-medium transition-all duration-200 hover:border-gray-400 hover:bg-gray-100 sm:flex"
+                className="hidden rounded-sm border-gray-300 text-sm px-3 py-1 font-medium transition-all duration-200 hover:border-gray-400 hover:bg-gray-100 sm:flex"
               >
                 Log in
               </Button>
@@ -156,7 +156,7 @@ export default function Navbar() {
             <SignUpButton mode="modal">
               <Button
                 size="sm"
-                className="rounded-lg bg-orange-700 px-4 font-medium text-white transition-all duration-200 hover:bg-gray-800"
+                className="rounded-sm bg-orange-700 text-sm px-3 py-1 font-medium text-white transition-all duration-200 hover:bg-gray-800"
               >
                 Sign up
               </Button>
