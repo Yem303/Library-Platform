@@ -1,7 +1,7 @@
 import LibraryList from "@/components/Library/LibraryList";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  metadataBase: new URL("https://istad-library.vercel.app"),
+  
   title: "My Library",
   description:
     "Manage your personal library with iSTAD Library. View and organize your favorite and borrowed books.",

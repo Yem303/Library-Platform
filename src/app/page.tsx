@@ -5,7 +5,6 @@ import BookSection from "@/components/home/BookSection";
 import { BOOK_CATEGORIES, BOOK_CATEGORY_LABELS, getBooks } from "@/lib/book";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  metadataBase: new URL("https://istad-library.vercel.app"),
   title: {
     template: "%s | iSTAD Library",
     default: "iSTAD Library | Online Book Library",
